@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    /*** Language and Environment *************************************************************************************/
+    "target": "esnext",
+    /*** Modules ******************************************************************************************************/
+    "module": "commonjs",
+    "rootDir": "./src",
+    "moduleResolution": "node",
+    /*** Emit *********************************************************************************************************/
+    "declaration": true,
+    "outDir": "./dist",
+    "removeComments": false,
+    /*** Interop Constraints ******************************************************************************************/
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": [
+    "./src/**/*.ts"
+  ]
+}
