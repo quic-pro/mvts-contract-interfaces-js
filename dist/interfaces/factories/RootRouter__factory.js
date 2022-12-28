@@ -315,18 +315,18 @@ const _abi = [
                     {
                         components: [
                             {
-                                internalType: "string",
+                                internalType: "uint256",
                                 name: "chainId",
-                                type: "string",
+                                type: "uint256",
+                            },
+                            {
+                                internalType: "uint256",
+                                name: "poolCodeLength",
+                                type: "uint256",
                             },
                             {
                                 internalType: "string",
                                 name: "adr",
-                                type: "string",
-                            },
-                            {
-                                internalType: "string",
-                                name: "poolCodeLength",
                                 type: "string",
                             },
                         ],
@@ -434,12 +434,56 @@ const _abi = [
                 type: "uint256",
             },
         ],
-        name: "getNextNode",
+        name: "getNodeData",
         outputs: [
             {
-                internalType: "string[5]",
+                components: [
+                    {
+                        internalType: "uint256",
+                        name: "responseCode",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "uint256",
+                        name: "ttl",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "enum RootRouter.CodeMode",
+                        name: "mode",
+                        type: "uint8",
+                    },
+                    {
+                        internalType: "string",
+                        name: "sipUri",
+                        type: "string",
+                    },
+                    {
+                        components: [
+                            {
+                                internalType: "uint256",
+                                name: "chainId",
+                                type: "uint256",
+                            },
+                            {
+                                internalType: "uint256",
+                                name: "poolCodeLength",
+                                type: "uint256",
+                            },
+                            {
+                                internalType: "string",
+                                name: "adr",
+                                type: "string",
+                            },
+                        ],
+                        internalType: "struct RootRouter.Router",
+                        name: "router",
+                        type: "tuple",
+                    },
+                ],
+                internalType: "struct RootRouter.NodeData",
                 name: "",
-                type: "string[5]",
+                type: "tuple",
             },
         ],
         stateMutability: "view",

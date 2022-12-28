@@ -27,19 +27,6 @@ const _abi = [
     },
     {
         inputs: [],
-        name: "POOL_CODE_LENGTH",
-        outputs: [
-            {
-                internalType: "string",
-                name: "",
-                type: "string",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
         name: "hasRootRouter",
         outputs: [
             {
@@ -76,9 +63,14 @@ const _abi = [
         name: "rootRouter",
         outputs: [
             {
-                internalType: "string",
+                internalType: "uint256",
                 name: "chainId",
-                type: "string",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "poolCodeLength",
+                type: "uint256",
             },
             {
                 internalType: "string",
@@ -158,9 +150,53 @@ const _abi = [
         name: "getRootRouter",
         outputs: [
             {
-                internalType: "string[5]",
+                components: [
+                    {
+                        internalType: "uint256",
+                        name: "responseCode",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "uint256",
+                        name: "ttl",
+                        type: "uint256",
+                    },
+                    {
+                        internalType: "enum Curator.CodeMode",
+                        name: "mode",
+                        type: "uint8",
+                    },
+                    {
+                        internalType: "string",
+                        name: "sipUri",
+                        type: "string",
+                    },
+                    {
+                        components: [
+                            {
+                                internalType: "uint256",
+                                name: "chainId",
+                                type: "uint256",
+                            },
+                            {
+                                internalType: "uint256",
+                                name: "poolCodeLength",
+                                type: "uint256",
+                            },
+                            {
+                                internalType: "string",
+                                name: "adr",
+                                type: "string",
+                            },
+                        ],
+                        internalType: "struct Curator.Router",
+                        name: "router",
+                        type: "tuple",
+                    },
+                ],
+                internalType: "struct Curator.NodeData",
                 name: "",
-                type: "string[5]",
+                type: "tuple",
             },
         ],
         stateMutability: "view",

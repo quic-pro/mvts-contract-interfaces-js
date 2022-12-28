@@ -19,16 +19,6 @@ export declare class Curator__factory {
         readonly type: "event";
     }, {
         readonly inputs: readonly [];
-        readonly name: "POOL_CODE_LENGTH";
-        readonly outputs: readonly [{
-            readonly internalType: "string";
-            readonly name: "";
-            readonly type: "string";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
         readonly name: "hasRootRouter";
         readonly outputs: readonly [{
             readonly internalType: "bool";
@@ -57,9 +47,13 @@ export declare class Curator__factory {
         readonly inputs: readonly [];
         readonly name: "rootRouter";
         readonly outputs: readonly [{
-            readonly internalType: "string";
+            readonly internalType: "uint256";
             readonly name: "chainId";
-            readonly type: "string";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "poolCodeLength";
+            readonly type: "uint256";
         }, {
             readonly internalType: "string";
             readonly name: "adr";
@@ -121,9 +115,43 @@ export declare class Curator__factory {
         readonly inputs: readonly [];
         readonly name: "getRootRouter";
         readonly outputs: readonly [{
-            readonly internalType: "string[5]";
+            readonly components: readonly [{
+                readonly internalType: "uint256";
+                readonly name: "responseCode";
+                readonly type: "uint256";
+            }, {
+                readonly internalType: "uint256";
+                readonly name: "ttl";
+                readonly type: "uint256";
+            }, {
+                readonly internalType: "enum Curator.CodeMode";
+                readonly name: "mode";
+                readonly type: "uint8";
+            }, {
+                readonly internalType: "string";
+                readonly name: "sipUri";
+                readonly type: "string";
+            }, {
+                readonly components: readonly [{
+                    readonly internalType: "uint256";
+                    readonly name: "chainId";
+                    readonly type: "uint256";
+                }, {
+                    readonly internalType: "uint256";
+                    readonly name: "poolCodeLength";
+                    readonly type: "uint256";
+                }, {
+                    readonly internalType: "string";
+                    readonly name: "adr";
+                    readonly type: "string";
+                }];
+                readonly internalType: "struct Curator.Router";
+                readonly name: "router";
+                readonly type: "tuple";
+            }];
+            readonly internalType: "struct Curator.NodeData";
             readonly name: "";
-            readonly type: "string[5]";
+            readonly type: "tuple";
         }];
         readonly stateMutability: "view";
         readonly type: "function";

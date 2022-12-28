@@ -2,13 +2,45 @@ import type { BaseContract, BigNumber, BigNumberish, BytesLike, CallOverrides, P
 import type { FunctionFragment, Result } from "@ethersproject/abi";
 import type { Listener, Provider } from "@ethersproject/providers";
 import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from "./common";
+export declare namespace RootRouter {
+    type RouterStruct = {
+        chainId: PromiseOrValue<BigNumberish>;
+        poolCodeLength: PromiseOrValue<BigNumberish>;
+        adr: PromiseOrValue<string>;
+    };
+    type RouterStructOutput = [BigNumber, BigNumber, string] & {
+        chainId: BigNumber;
+        poolCodeLength: BigNumber;
+        adr: string;
+    };
+    type NodeDataStruct = {
+        responseCode: PromiseOrValue<BigNumberish>;
+        ttl: PromiseOrValue<BigNumberish>;
+        mode: PromiseOrValue<BigNumberish>;
+        sipUri: PromiseOrValue<string>;
+        router: RootRouter.RouterStruct;
+    };
+    type NodeDataStructOutput = [
+        BigNumber,
+        BigNumber,
+        number,
+        string,
+        RootRouter.RouterStructOutput
+    ] & {
+        responseCode: BigNumber;
+        ttl: BigNumber;
+        mode: number;
+        sipUri: string;
+        router: RootRouter.RouterStructOutput;
+    };
+}
 export interface RouterInterface extends utils.Interface {
     functions: {
-        "getNextNode(uint256)": FunctionFragment;
+        "getNodeData(uint256)": FunctionFragment;
     };
-    getFunction(nameOrSignatureOrTopic: "getNextNode"): FunctionFragment;
-    encodeFunctionData(functionFragment: "getNextNode", values: [PromiseOrValue<BigNumberish>]): string;
-    decodeFunctionResult(functionFragment: "getNextNode", data: BytesLike): Result;
+    getFunction(nameOrSignatureOrTopic: "getNodeData"): FunctionFragment;
+    encodeFunctionData(functionFragment: "getNodeData", values: [PromiseOrValue<BigNumberish>]): string;
+    decodeFunctionResult(functionFragment: "getNodeData", data: BytesLike): Result;
     events: {};
 }
 export interface Router extends BaseContract {
@@ -27,17 +59,17 @@ export interface Router extends BaseContract {
     once: OnEvent<this>;
     removeListener: OnEvent<this>;
     functions: {
-        getNextNode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[[string, string, string, string, string]]>;
+        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[RootRouter.NodeDataStructOutput]>;
     };
-    getNextNode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[string, string, string, string, string]>;
+    getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.NodeDataStructOutput>;
     callStatic: {
-        getNextNode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[string, string, string, string, string]>;
+        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.NodeDataStructOutput>;
     };
     filters: {};
     estimateGas: {
-        getNextNode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
+        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
     };
     populateTransaction: {
-        getNextNode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
     };
 }

@@ -8,11 +8,45 @@ export declare class Router__factory {
             readonly name: "code";
             readonly type: "uint256";
         }];
-        readonly name: "getNextNode";
+        readonly name: "getNodeData";
         readonly outputs: readonly [{
-            readonly internalType: "string[5]";
+            readonly components: readonly [{
+                readonly internalType: "uint256";
+                readonly name: "responseCode";
+                readonly type: "uint256";
+            }, {
+                readonly internalType: "uint256";
+                readonly name: "ttl";
+                readonly type: "uint256";
+            }, {
+                readonly internalType: "enum RootRouter.CodeMode";
+                readonly name: "mode";
+                readonly type: "uint8";
+            }, {
+                readonly internalType: "string";
+                readonly name: "sipUri";
+                readonly type: "string";
+            }, {
+                readonly components: readonly [{
+                    readonly internalType: "uint256";
+                    readonly name: "chainId";
+                    readonly type: "uint256";
+                }, {
+                    readonly internalType: "uint256";
+                    readonly name: "poolCodeLength";
+                    readonly type: "uint256";
+                }, {
+                    readonly internalType: "string";
+                    readonly name: "adr";
+                    readonly type: "string";
+                }];
+                readonly internalType: "struct RootRouter.Router";
+                readonly name: "router";
+                readonly type: "tuple";
+            }];
+            readonly internalType: "struct RootRouter.NodeData";
             readonly name: "";
-            readonly type: "string[5]";
+            readonly type: "tuple";
         }];
         readonly stateMutability: "view";
         readonly type: "function";

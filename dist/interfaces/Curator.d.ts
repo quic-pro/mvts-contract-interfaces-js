@@ -2,9 +2,40 @@ import type { BaseContract, BigNumber, BigNumberish, BytesLike, CallOverrides, C
 import type { FunctionFragment, Result, EventFragment } from "@ethersproject/abi";
 import type { Listener, Provider } from "@ethersproject/providers";
 import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from "./common";
+export declare namespace Curator {
+    type RouterStruct = {
+        chainId: PromiseOrValue<BigNumberish>;
+        poolCodeLength: PromiseOrValue<BigNumberish>;
+        adr: PromiseOrValue<string>;
+    };
+    type RouterStructOutput = [BigNumber, BigNumber, string] & {
+        chainId: BigNumber;
+        poolCodeLength: BigNumber;
+        adr: string;
+    };
+    type NodeDataStruct = {
+        responseCode: PromiseOrValue<BigNumberish>;
+        ttl: PromiseOrValue<BigNumberish>;
+        mode: PromiseOrValue<BigNumberish>;
+        sipUri: PromiseOrValue<string>;
+        router: Curator.RouterStruct;
+    };
+    type NodeDataStructOutput = [
+        BigNumber,
+        BigNumber,
+        number,
+        string,
+        Curator.RouterStructOutput
+    ] & {
+        responseCode: BigNumber;
+        ttl: BigNumber;
+        mode: number;
+        sipUri: string;
+        router: Curator.RouterStructOutput;
+    };
+}
 export interface CuratorInterface extends utils.Interface {
     functions: {
-        "POOL_CODE_LENGTH()": FunctionFragment;
         "hasRootRouter()": FunctionFragment;
         "owner()": FunctionFragment;
         "renounceOwnership()": FunctionFragment;
@@ -16,8 +47,7 @@ export interface CuratorInterface extends utils.Interface {
         "cleanRootRouter()": FunctionFragment;
         "getRootRouter()": FunctionFragment;
     };
-    getFunction(nameOrSignatureOrTopic: "POOL_CODE_LENGTH" | "hasRootRouter" | "owner" | "renounceOwnership" | "rootRouter" | "transferOwnership" | "ttl" | "setTtl" | "setRootRouter" | "cleanRootRouter" | "getRootRouter"): FunctionFragment;
-    encodeFunctionData(functionFragment: "POOL_CODE_LENGTH", values?: undefined): string;
+    getFunction(nameOrSignatureOrTopic: "hasRootRouter" | "owner" | "renounceOwnership" | "rootRouter" | "transferOwnership" | "ttl" | "setTtl" | "setRootRouter" | "cleanRootRouter" | "getRootRouter"): FunctionFragment;
     encodeFunctionData(functionFragment: "hasRootRouter", values?: undefined): string;
     encodeFunctionData(functionFragment: "owner", values?: undefined): string;
     encodeFunctionData(functionFragment: "renounceOwnership", values?: undefined): string;
@@ -28,7 +58,6 @@ export interface CuratorInterface extends utils.Interface {
     encodeFunctionData(functionFragment: "setRootRouter", values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]): string;
     encodeFunctionData(functionFragment: "cleanRootRouter", values?: undefined): string;
     encodeFunctionData(functionFragment: "getRootRouter", values?: undefined): string;
-    decodeFunctionResult(functionFragment: "POOL_CODE_LENGTH", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasRootRouter", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "renounceOwnership", data: BytesLike): Result;
@@ -69,14 +98,18 @@ export interface Curator extends BaseContract {
     once: OnEvent<this>;
     removeListener: OnEvent<this>;
     functions: {
-        POOL_CODE_LENGTH(overrides?: CallOverrides): Promise<[string]>;
         hasRootRouter(overrides?: CallOverrides): Promise<[boolean]>;
         owner(overrides?: CallOverrides): Promise<[string]>;
         renounceOwnership(overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
-        rootRouter(overrides?: CallOverrides): Promise<[string, string] & {
-            chainId: string;
+        rootRouter(overrides?: CallOverrides): Promise<[
+            BigNumber,
+            BigNumber,
+            string
+        ] & {
+            chainId: BigNumber;
+            poolCodeLength: BigNumber;
             adr: string;
         }>;
         transferOwnership(newOwner: PromiseOrValue<string>, overrides?: Overrides & {
@@ -92,16 +125,20 @@ export interface Curator extends BaseContract {
         cleanRootRouter(overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
-        getRootRouter(overrides?: CallOverrides): Promise<[[string, string, string, string, string]]>;
+        getRootRouter(overrides?: CallOverrides): Promise<[Curator.NodeDataStructOutput]>;
     };
-    POOL_CODE_LENGTH(overrides?: CallOverrides): Promise<string>;
     hasRootRouter(overrides?: CallOverrides): Promise<boolean>;
     owner(overrides?: CallOverrides): Promise<string>;
     renounceOwnership(overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
-    rootRouter(overrides?: CallOverrides): Promise<[string, string] & {
-        chainId: string;
+    rootRouter(overrides?: CallOverrides): Promise<[
+        BigNumber,
+        BigNumber,
+        string
+    ] & {
+        chainId: BigNumber;
+        poolCodeLength: BigNumber;
         adr: string;
     }>;
     transferOwnership(newOwner: PromiseOrValue<string>, overrides?: Overrides & {
@@ -117,14 +154,18 @@ export interface Curator extends BaseContract {
     cleanRootRouter(overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
-    getRootRouter(overrides?: CallOverrides): Promise<[string, string, string, string, string]>;
+    getRootRouter(overrides?: CallOverrides): Promise<Curator.NodeDataStructOutput>;
     callStatic: {
-        POOL_CODE_LENGTH(overrides?: CallOverrides): Promise<string>;
         hasRootRouter(overrides?: CallOverrides): Promise<boolean>;
         owner(overrides?: CallOverrides): Promise<string>;
         renounceOwnership(overrides?: CallOverrides): Promise<void>;
-        rootRouter(overrides?: CallOverrides): Promise<[string, string] & {
-            chainId: string;
+        rootRouter(overrides?: CallOverrides): Promise<[
+            BigNumber,
+            BigNumber,
+            string
+        ] & {
+            chainId: BigNumber;
+            poolCodeLength: BigNumber;
             adr: string;
         }>;
         transferOwnership(newOwner: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
@@ -132,14 +173,13 @@ export interface Curator extends BaseContract {
         setTtl(newTtl: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setRootRouter(newChainId: PromiseOrValue<BigNumberish>, newAdr: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
         cleanRootRouter(overrides?: CallOverrides): Promise<void>;
-        getRootRouter(overrides?: CallOverrides): Promise<[string, string, string, string, string]>;
+        getRootRouter(overrides?: CallOverrides): Promise<Curator.NodeDataStructOutput>;
     };
     filters: {
         "OwnershipTransferred(address,address)"(previousOwner?: PromiseOrValue<string> | null, newOwner?: PromiseOrValue<string> | null): OwnershipTransferredEventFilter;
         OwnershipTransferred(previousOwner?: PromiseOrValue<string> | null, newOwner?: PromiseOrValue<string> | null): OwnershipTransferredEventFilter;
     };
     estimateGas: {
-        POOL_CODE_LENGTH(overrides?: CallOverrides): Promise<BigNumber>;
         hasRootRouter(overrides?: CallOverrides): Promise<BigNumber>;
         owner(overrides?: CallOverrides): Promise<BigNumber>;
         renounceOwnership(overrides?: Overrides & {
@@ -162,7 +202,6 @@ export interface Curator extends BaseContract {
         getRootRouter(overrides?: CallOverrides): Promise<BigNumber>;
     };
     populateTransaction: {
-        POOL_CODE_LENGTH(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         hasRootRouter(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         owner(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         renounceOwnership(overrides?: Overrides & {
