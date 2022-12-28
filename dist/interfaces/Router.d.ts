@@ -2,7 +2,7 @@ import type { BaseContract, BigNumber, BigNumberish, BytesLike, CallOverrides, P
 import type { FunctionFragment, Result } from "@ethersproject/abi";
 import type { Listener, Provider } from "@ethersproject/providers";
 import type { TypedEventFilter, TypedEvent, TypedListener, OnEvent, PromiseOrValue } from "./common";
-export declare namespace RootRouter {
+export declare namespace Router {
     type RouterStruct = {
         chainId: PromiseOrValue<BigNumberish>;
         poolCodeLength: PromiseOrValue<BigNumberish>;
@@ -18,20 +18,20 @@ export declare namespace RootRouter {
         ttl: PromiseOrValue<BigNumberish>;
         mode: PromiseOrValue<BigNumberish>;
         sipUri: PromiseOrValue<string>;
-        router: RootRouter.RouterStruct;
+        router: Router.RouterStruct;
     };
     type NodeDataStructOutput = [
         BigNumber,
         BigNumber,
         number,
         string,
-        RootRouter.RouterStructOutput
+        Router.RouterStructOutput
     ] & {
         responseCode: BigNumber;
         ttl: BigNumber;
         mode: number;
         sipUri: string;
-        router: RootRouter.RouterStructOutput;
+        router: Router.RouterStructOutput;
     };
 }
 export interface RouterInterface extends utils.Interface {
@@ -59,11 +59,11 @@ export interface Router extends BaseContract {
     once: OnEvent<this>;
     removeListener: OnEvent<this>;
     functions: {
-        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[RootRouter.NodeDataStructOutput]>;
+        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[Router.NodeDataStructOutput]>;
     };
-    getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.NodeDataStructOutput>;
+    getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<Router.NodeDataStructOutput>;
     callStatic: {
-        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.NodeDataStructOutput>;
+        getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<Router.NodeDataStructOutput>;
     };
     filters: {};
     estimateGas: {
