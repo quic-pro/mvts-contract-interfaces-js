@@ -19,7 +19,7 @@ export declare class Router__factory {
                 readonly name: "ttl";
                 readonly type: "uint256";
             }, {
-                readonly internalType: "enum RootRouter.CodeMode";
+                readonly internalType: "enum Router.CodeMode";
                 readonly name: "mode";
                 readonly type: "uint8";
             }, {
@@ -40,11 +40,11 @@ export declare class Router__factory {
                     readonly name: "adr";
                     readonly type: "string";
                 }];
-                readonly internalType: "struct RootRouter.Router";
+                readonly internalType: "struct Router.Router";
                 readonly name: "router";
                 readonly type: "tuple";
             }];
-            readonly internalType: "struct RootRouter.NodeData";
+            readonly internalType: "struct Router.NodeData";
             readonly name: "";
             readonly type: "tuple";
         }];
