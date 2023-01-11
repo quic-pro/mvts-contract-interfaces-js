@@ -1,7 +1,7 @@
 {
   "name": "@mvts/contract-interfaces-js",
   "description": "A set of interfaces for working with smart contracts of the routing system.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "author": {
     "name": "Sergey Bondarenko QUIC-PRO Inc. developer",
     "email": "sergey@quic.pro"
