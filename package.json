@@ -17,16 +17,12 @@
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepare": "husky install",
     "preinterfaces:generate": "shx rm -rf ./src/interfaces",
     "interfaces:generate": "typechain --target ethers-v5 --out-dir ./src/interfaces ./abis/*.json --discriminate-types",
     "prebuild": "shx rm -rf ./dist",
     "build": "yarn interfaces:generate && tsc",
     "prepublish": "yarn build"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn build"
-    }
   },
   "dependencies": {
     "@ethersproject/abi": "^5.7.0",
