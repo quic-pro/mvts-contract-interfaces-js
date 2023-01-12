@@ -22,3 +22,7 @@ const curator = Curator__factory.connect(address, provider);
 const router = Router__factory.connect(address, provider);
 const rootRouter = RootRouter__factory.connect(address, provider);
 ```
+
+## License
+
+[MIT](LICENSE)
