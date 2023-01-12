@@ -22,6 +22,8 @@
     "interfaces:generate": "typechain --target ethers-v5 --out-dir ./src/interfaces ./abis/*.json --discriminate-types",
     "prebuild": "shx rm -rf ./dist",
     "build": "yarn interfaces:generate && tsc",
+    "lint": "eslint .",
+    "lint:fix": "yarn lint --fix",
     "prepublish": "yarn build"
   },
   "dependencies": {
@@ -30,8 +32,12 @@
     "ethers": "^5.7.2"
   },
   "devDependencies": {
+    "@quic-pro/eslint-config": "^0.1.1",
     "@typechain/ethers-v5": "^10.2.0",
     "@types/node": "^18.11.9",
+    "@typescript-eslint/eslint-plugin": "^5.48.1",
+    "@typescript-eslint/parser": "^5.48.1",
+    "eslint": "^8.31.0",
     "husky": "^8.0.3",
     "shx": "^0.3.4",
     "typechain": "^8.1.1",
