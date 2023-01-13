@@ -31,9 +31,9 @@ Detailed description of smart contracts and their methods: [MVTS Documentation](
 For convenience, you can use factories that store the ABI of the corresponding smart contract:
 
 ```javascript
-const curator = Curator__factory.connect(address, provider);
-const router = Router__factory.connect(address, provider);
-const rootRouter = RootRouter__factory.connect(address, provider);
+const curator = CuratorFactory.connect(address, provider);
+const router = RouterFactory.connect(address, provider);
+const rootRouter = RootRouterFactory.connect(address, provider);
 ```
 
 ## License
