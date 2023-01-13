@@ -1,5 +1,26 @@
 # Changelog
 
+## [1.0.0](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/1.0.0) (2023-01-13)
+
+### Changed
+
+- feat: rename export factories
+
+### Docs
+
+- docs: add keywords
+
+### Chores
+
+- chore: reconfigure husky
+- chore: add eslint
+- chore: add editorconfig
+- chore: add license information
+- chore: add package installation instruction
+- chore: add changelog
+- chore(packages): bump @quic-pro/eslint-config from 0.1.1 to 0.3.0
+- chore: bump version to 1.0.0
+
 ## [0.2.1](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/0.2.1) (2023-01-11)
 
 ### Fixed
