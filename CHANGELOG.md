@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.0](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/2.1.0) (2023-02-07)
+
+### Changed
+
+- feat: add enum of response codes
+
+### Chores
+
+- chore: bump version to 2.0.0
+
 ## [2.0.0](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/2.0.0) (2023-02-07)
 
 ### Changed
