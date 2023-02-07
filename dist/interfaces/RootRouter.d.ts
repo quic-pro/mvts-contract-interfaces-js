@@ -13,57 +13,31 @@ export declare namespace RootRouter {
         poolCodeLength: BigNumber;
         adr: string;
     };
-    type CodeStruct = {
-        isBlocked: PromiseOrValue<boolean>;
+    type CodeDataStruct = {
+        status: PromiseOrValue<BigNumberish>;
         isVerified: PromiseOrValue<boolean>;
-        hasSipDomain: PromiseOrValue<boolean>;
-        hasRouter: PromiseOrValue<boolean>;
         subscriptionEndTime: PromiseOrValue<BigNumberish>;
+        holdEndTime: PromiseOrValue<BigNumberish>;
         mode: PromiseOrValue<BigNumberish>;
         sipDomain: PromiseOrValue<string>;
         router: RootRouter.RouterStruct;
     };
-    type CodeStructOutput = [
+    type CodeDataStructOutput = [
+        number,
         boolean,
-        boolean,
-        boolean,
-        boolean,
+        BigNumber,
         BigNumber,
         number,
         string,
         RootRouter.RouterStructOutput
     ] & {
-        isBlocked: boolean;
+        status: number;
         isVerified: boolean;
-        hasSipDomain: boolean;
-        hasRouter: boolean;
         subscriptionEndTime: BigNumber;
+        holdEndTime: BigNumber;
         mode: number;
         sipDomain: string;
         router: RootRouter.RouterStructOutput;
-    };
-    type CodeStatusStruct = {
-        isBlocked: PromiseOrValue<boolean>;
-        hasOwner: PromiseOrValue<boolean>;
-        isHeld: PromiseOrValue<boolean>;
-        isAvailableForMint: PromiseOrValue<boolean>;
-        subscriptionEndTime: PromiseOrValue<BigNumberish>;
-        holdEndTime: PromiseOrValue<BigNumberish>;
-    };
-    type CodeStatusStructOutput = [
-        boolean,
-        boolean,
-        boolean,
-        boolean,
-        BigNumber,
-        BigNumber
-    ] & {
-        isBlocked: boolean;
-        hasOwner: boolean;
-        isHeld: boolean;
-        isAvailableForMint: boolean;
-        subscriptionEndTime: BigNumber;
-        holdEndTime: BigNumber;
     };
     type NodeDataStruct = {
         responseCode: PromiseOrValue<BigNumberish>;
@@ -97,24 +71,15 @@ export interface RootRouterInterface extends utils.Interface {
         "clearCodeSipDomain(uint256)": FunctionFragment;
         "defaultSipDomain()": FunctionFragment;
         "getApproved(uint256)": FunctionFragment;
-        "getAvailableForMintCodes()": FunctionFragment;
-        "getBlockedCodes()": FunctionFragment;
         "getCodeData(uint256)": FunctionFragment;
         "getCodeStatus(uint256)": FunctionFragment;
-        "getHeldCodes()": FunctionFragment;
-        "getMode(uint256)": FunctionFragment;
+        "getCodeStatuses()": FunctionFragment;
         "getNodeData(uint256)": FunctionFragment;
         "getOwnerCodes(address)": FunctionFragment;
         "getPoolCodes()": FunctionFragment;
         "hasOwner(uint256)": FunctionFragment;
-        "holdingDuration()": FunctionFragment;
+        "holdDuration()": FunctionFragment;
         "isApprovedForAll(address,address)": FunctionFragment;
-        "isAvailableForMint(uint256)": FunctionFragment;
-        "isBlocked(uint256)": FunctionFragment;
-        "isHeld(uint256)": FunctionFragment;
-        "isNumberMode(uint256)": FunctionFragment;
-        "isPoolMode(uint256)": FunctionFragment;
-        "isVerified(uint256)": FunctionFragment;
         "mint(uint256)": FunctionFragment;
         "mintPrice()": FunctionFragment;
         "modeChangePrice()": FunctionFragment;
@@ -129,12 +94,14 @@ export interface RootRouterInterface extends utils.Interface {
         "setApprovalForAll(address,bool)": FunctionFragment;
         "setBaseUri(string)": FunctionFragment;
         "setCodeBlockedStatus(uint256,bool)": FunctionFragment;
+        "setCodeHoldEndTime(uint256,uint256)": FunctionFragment;
         "setCodeRouter(uint256,uint256,string,uint256)": FunctionFragment;
         "setCodeSipDomain(uint256,string)": FunctionFragment;
+        "setCodeSubscription(uint256,uint256,uint256)": FunctionFragment;
         "setCodeSubscriptionEndTime(uint256,uint256)": FunctionFragment;
         "setCodeVerifiedStatus(uint256,bool)": FunctionFragment;
         "setDefaultSipDomain(string)": FunctionFragment;
-        "setHoldingDuration(uint256)": FunctionFragment;
+        "setHoldDuration(uint256)": FunctionFragment;
         "setMintPrice(uint256)": FunctionFragment;
         "setModeChangePrice(uint256)": FunctionFragment;
         "setSubscriptionDuration(uint256)": FunctionFragment;
@@ -152,7 +119,7 @@ export interface RootRouterInterface extends utils.Interface {
         "verificationOperator()": FunctionFragment;
         "withdraw()": FunctionFragment;
     };
-    getFunction(nameOrSignatureOrTopic: "POOL_SIZE" | "approve" | "balanceOf" | "baseUri" | "changeCodeMode" | "clearCodeRouter" | "clearCodeSipDomain" | "defaultSipDomain" | "getApproved" | "getAvailableForMintCodes" | "getBlockedCodes" | "getCodeData" | "getCodeStatus" | "getHeldCodes" | "getMode" | "getNodeData" | "getOwnerCodes" | "getPoolCodes" | "hasOwner" | "holdingDuration" | "isApprovedForAll" | "isAvailableForMint" | "isBlocked" | "isHeld" | "isNumberMode" | "isPoolMode" | "isVerified" | "mint" | "mintPrice" | "modeChangePrice" | "name" | "owner" | "ownerOf" | "renewSubscription" | "renounceOwnership" | "renounceOwnershipOfCode" | "safeTransferFrom(address,address,uint256)" | "safeTransferFrom(address,address,uint256,bytes)" | "setApprovalForAll" | "setBaseUri" | "setCodeBlockedStatus" | "setCodeRouter" | "setCodeSipDomain" | "setCodeSubscriptionEndTime" | "setCodeVerifiedStatus" | "setDefaultSipDomain" | "setHoldingDuration" | "setMintPrice" | "setModeChangePrice" | "setSubscriptionDuration" | "setSubscriptionPrice" | "setTtl" | "setVerificationOperator" | "subscriptionDuration" | "subscriptionPrice" | "supportsInterface" | "symbol" | "tokenURI" | "transferFrom" | "transferOwnership" | "ttl" | "verificationOperator" | "withdraw"): FunctionFragment;
+    getFunction(nameOrSignatureOrTopic: "POOL_SIZE" | "approve" | "balanceOf" | "baseUri" | "changeCodeMode" | "clearCodeRouter" | "clearCodeSipDomain" | "defaultSipDomain" | "getApproved" | "getCodeData" | "getCodeStatus" | "getCodeStatuses" | "getNodeData" | "getOwnerCodes" | "getPoolCodes" | "hasOwner" | "holdDuration" | "isApprovedForAll" | "mint" | "mintPrice" | "modeChangePrice" | "name" | "owner" | "ownerOf" | "renewSubscription" | "renounceOwnership" | "renounceOwnershipOfCode" | "safeTransferFrom(address,address,uint256)" | "safeTransferFrom(address,address,uint256,bytes)" | "setApprovalForAll" | "setBaseUri" | "setCodeBlockedStatus" | "setCodeHoldEndTime" | "setCodeRouter" | "setCodeSipDomain" | "setCodeSubscription" | "setCodeSubscriptionEndTime" | "setCodeVerifiedStatus" | "setDefaultSipDomain" | "setHoldDuration" | "setMintPrice" | "setModeChangePrice" | "setSubscriptionDuration" | "setSubscriptionPrice" | "setTtl" | "setVerificationOperator" | "subscriptionDuration" | "subscriptionPrice" | "supportsInterface" | "symbol" | "tokenURI" | "transferFrom" | "transferOwnership" | "ttl" | "verificationOperator" | "withdraw"): FunctionFragment;
     encodeFunctionData(functionFragment: "POOL_SIZE", values?: undefined): string;
     encodeFunctionData(functionFragment: "approve", values: [PromiseOrValue<string>, PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "balanceOf", values: [PromiseOrValue<string>]): string;
@@ -162,24 +129,15 @@ export interface RootRouterInterface extends utils.Interface {
     encodeFunctionData(functionFragment: "clearCodeSipDomain", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "defaultSipDomain", values?: undefined): string;
     encodeFunctionData(functionFragment: "getApproved", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "getAvailableForMintCodes", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getBlockedCodes", values?: undefined): string;
     encodeFunctionData(functionFragment: "getCodeData", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "getCodeStatus", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "getHeldCodes", values?: undefined): string;
-    encodeFunctionData(functionFragment: "getMode", values: [PromiseOrValue<BigNumberish>]): string;
+    encodeFunctionData(functionFragment: "getCodeStatuses", values?: undefined): string;
     encodeFunctionData(functionFragment: "getNodeData", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "getOwnerCodes", values: [PromiseOrValue<string>]): string;
     encodeFunctionData(functionFragment: "getPoolCodes", values?: undefined): string;
     encodeFunctionData(functionFragment: "hasOwner", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "holdingDuration", values?: undefined): string;
+    encodeFunctionData(functionFragment: "holdDuration", values?: undefined): string;
     encodeFunctionData(functionFragment: "isApprovedForAll", values: [PromiseOrValue<string>, PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "isAvailableForMint", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "isBlocked", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "isHeld", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "isNumberMode", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "isPoolMode", values: [PromiseOrValue<BigNumberish>]): string;
-    encodeFunctionData(functionFragment: "isVerified", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "mint", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "mintPrice", values?: undefined): string;
     encodeFunctionData(functionFragment: "modeChangePrice", values?: undefined): string;
@@ -203,6 +161,7 @@ export interface RootRouterInterface extends utils.Interface {
     encodeFunctionData(functionFragment: "setApprovalForAll", values: [PromiseOrValue<string>, PromiseOrValue<boolean>]): string;
     encodeFunctionData(functionFragment: "setBaseUri", values: [PromiseOrValue<string>]): string;
     encodeFunctionData(functionFragment: "setCodeBlockedStatus", values: [PromiseOrValue<BigNumberish>, PromiseOrValue<boolean>]): string;
+    encodeFunctionData(functionFragment: "setCodeHoldEndTime", values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "setCodeRouter", values: [
         PromiseOrValue<BigNumberish>,
         PromiseOrValue<BigNumberish>,
@@ -210,10 +169,15 @@ export interface RootRouterInterface extends utils.Interface {
         PromiseOrValue<BigNumberish>
     ]): string;
     encodeFunctionData(functionFragment: "setCodeSipDomain", values: [PromiseOrValue<BigNumberish>, PromiseOrValue<string>]): string;
+    encodeFunctionData(functionFragment: "setCodeSubscription", values: [
+        PromiseOrValue<BigNumberish>,
+        PromiseOrValue<BigNumberish>,
+        PromiseOrValue<BigNumberish>
+    ]): string;
     encodeFunctionData(functionFragment: "setCodeSubscriptionEndTime", values: [PromiseOrValue<BigNumberish>, PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "setCodeVerifiedStatus", values: [PromiseOrValue<BigNumberish>, PromiseOrValue<boolean>]): string;
     encodeFunctionData(functionFragment: "setDefaultSipDomain", values: [PromiseOrValue<string>]): string;
-    encodeFunctionData(functionFragment: "setHoldingDuration", values: [PromiseOrValue<BigNumberish>]): string;
+    encodeFunctionData(functionFragment: "setHoldDuration", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "setMintPrice", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "setModeChangePrice", values: [PromiseOrValue<BigNumberish>]): string;
     encodeFunctionData(functionFragment: "setSubscriptionDuration", values: [PromiseOrValue<BigNumberish>]): string;
@@ -243,24 +207,15 @@ export interface RootRouterInterface extends utils.Interface {
     decodeFunctionResult(functionFragment: "clearCodeSipDomain", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "defaultSipDomain", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getApproved", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getAvailableForMintCodes", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getBlockedCodes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getCodeData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getCodeStatus", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getHeldCodes", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "getMode", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "getCodeStatuses", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getNodeData", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getOwnerCodes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "getPoolCodes", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "hasOwner", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "holdingDuration", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "holdDuration", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "isApprovedForAll", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isAvailableForMint", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isBlocked", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isHeld", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isNumberMode", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isPoolMode", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "isVerified", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "mintPrice", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "modeChangePrice", data: BytesLike): Result;
@@ -275,12 +230,14 @@ export interface RootRouterInterface extends utils.Interface {
     decodeFunctionResult(functionFragment: "setApprovalForAll", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setBaseUri", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setCodeBlockedStatus", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setCodeHoldEndTime", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setCodeRouter", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setCodeSipDomain", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setCodeSubscription", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setCodeSubscriptionEndTime", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setCodeVerifiedStatus", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setDefaultSipDomain", data: BytesLike): Result;
-    decodeFunctionResult(functionFragment: "setHoldingDuration", data: BytesLike): Result;
+    decodeFunctionResult(functionFragment: "setHoldDuration", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setMintPrice", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setModeChangePrice", data: BytesLike): Result;
     decodeFunctionResult(functionFragment: "setSubscriptionDuration", data: BytesLike): Result;
@@ -383,24 +340,15 @@ export interface RootRouter extends BaseContract {
         }): Promise<ContractTransaction>;
         defaultSipDomain(overrides?: CallOverrides): Promise<[string]>;
         getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[string]>;
-        getAvailableForMintCodes(overrides?: CallOverrides): Promise<[boolean[]]>;
-        getBlockedCodes(overrides?: CallOverrides): Promise<[boolean[]]>;
-        getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[RootRouter.CodeStructOutput]>;
-        getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[RootRouter.CodeStatusStructOutput]>;
-        getHeldCodes(overrides?: CallOverrides): Promise<[boolean[]]>;
-        getMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[number]>;
+        getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[RootRouter.CodeDataStructOutput]>;
+        getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[number]>;
+        getCodeStatuses(overrides?: CallOverrides): Promise<[number[]]>;
         getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[RootRouter.NodeDataStructOutput]>;
         getOwnerCodes(adr: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[boolean[]]>;
         getPoolCodes(overrides?: CallOverrides): Promise<[boolean[]]>;
         hasOwner(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[boolean]>;
-        holdingDuration(overrides?: CallOverrides): Promise<[BigNumber]>;
+        holdDuration(overrides?: CallOverrides): Promise<[BigNumber]>;
         isApprovedForAll(owner: PromiseOrValue<string>, operator: PromiseOrValue<string>, overrides?: CallOverrides): Promise<[boolean]>;
-        isAvailableForMint(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[boolean]>;
-        isBlocked(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[boolean]>;
-        isHeld(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[boolean]>;
-        isNumberMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[boolean]>;
-        isPoolMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[boolean]>;
-        isVerified(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[boolean]>;
         mint(code: PromiseOrValue<BigNumberish>, overrides?: PayableOverrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
@@ -421,7 +369,7 @@ export interface RootRouter extends BaseContract {
         "safeTransferFrom(address,address,uint256)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
-        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
         setApprovalForAll(operator: PromiseOrValue<string>, approved: PromiseOrValue<boolean>, overrides?: Overrides & {
@@ -433,10 +381,16 @@ export interface RootRouter extends BaseContract {
         setCodeBlockedStatus(code: PromiseOrValue<BigNumberish>, newBlockedStatus: PromiseOrValue<boolean>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
+        setCodeHoldEndTime(code: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<ContractTransaction>;
         setCodeRouter(code: PromiseOrValue<BigNumberish>, newChainId: PromiseOrValue<BigNumberish>, newAdr: PromiseOrValue<string>, newPoolCodeLength: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
         setCodeSipDomain(code: PromiseOrValue<BigNumberish>, newSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<ContractTransaction>;
+        setCodeSubscription(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
         setCodeSubscriptionEndTime(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -448,7 +402,7 @@ export interface RootRouter extends BaseContract {
         setDefaultSipDomain(newDefaultSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
-        setHoldingDuration(newHoldingDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+        setHoldDuration(newHoldDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
         setMintPrice(newMintPrice: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -474,7 +428,7 @@ export interface RootRouter extends BaseContract {
         supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<[boolean]>;
         symbol(overrides?: CallOverrides): Promise<[string]>;
         tokenURI(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<[string]>;
-        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<ContractTransaction>;
         transferOwnership(newOwner: PromiseOrValue<string>, overrides?: Overrides & {
@@ -503,24 +457,15 @@ export interface RootRouter extends BaseContract {
     }): Promise<ContractTransaction>;
     defaultSipDomain(overrides?: CallOverrides): Promise<string>;
     getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
-    getAvailableForMintCodes(overrides?: CallOverrides): Promise<boolean[]>;
-    getBlockedCodes(overrides?: CallOverrides): Promise<boolean[]>;
-    getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.CodeStructOutput>;
-    getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.CodeStatusStructOutput>;
-    getHeldCodes(overrides?: CallOverrides): Promise<boolean[]>;
-    getMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<number>;
+    getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.CodeDataStructOutput>;
+    getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<number>;
+    getCodeStatuses(overrides?: CallOverrides): Promise<number[]>;
     getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.NodeDataStructOutput>;
     getOwnerCodes(adr: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean[]>;
     getPoolCodes(overrides?: CallOverrides): Promise<boolean[]>;
     hasOwner(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-    holdingDuration(overrides?: CallOverrides): Promise<BigNumber>;
+    holdDuration(overrides?: CallOverrides): Promise<BigNumber>;
     isApprovedForAll(owner: PromiseOrValue<string>, operator: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
-    isAvailableForMint(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-    isBlocked(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-    isHeld(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-    isNumberMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-    isPoolMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-    isVerified(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
     mint(code: PromiseOrValue<BigNumberish>, overrides?: PayableOverrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
@@ -541,7 +486,7 @@ export interface RootRouter extends BaseContract {
     "safeTransferFrom(address,address,uint256)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
-    "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+    "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
     setApprovalForAll(operator: PromiseOrValue<string>, approved: PromiseOrValue<boolean>, overrides?: Overrides & {
@@ -553,10 +498,16 @@ export interface RootRouter extends BaseContract {
     setCodeBlockedStatus(code: PromiseOrValue<BigNumberish>, newBlockedStatus: PromiseOrValue<boolean>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
+    setCodeHoldEndTime(code: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+        from?: PromiseOrValue<string>;
+    }): Promise<ContractTransaction>;
     setCodeRouter(code: PromiseOrValue<BigNumberish>, newChainId: PromiseOrValue<BigNumberish>, newAdr: PromiseOrValue<string>, newPoolCodeLength: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
     setCodeSipDomain(code: PromiseOrValue<BigNumberish>, newSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
+        from?: PromiseOrValue<string>;
+    }): Promise<ContractTransaction>;
+    setCodeSubscription(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
     setCodeSubscriptionEndTime(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -568,7 +519,7 @@ export interface RootRouter extends BaseContract {
     setDefaultSipDomain(newDefaultSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
-    setHoldingDuration(newHoldingDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+    setHoldDuration(newHoldDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
     setMintPrice(newMintPrice: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -594,7 +545,7 @@ export interface RootRouter extends BaseContract {
     supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<boolean>;
     symbol(overrides?: CallOverrides): Promise<string>;
     tokenURI(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
-    transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+    transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
         from?: PromiseOrValue<string>;
     }): Promise<ContractTransaction>;
     transferOwnership(newOwner: PromiseOrValue<string>, overrides?: Overrides & {
@@ -615,24 +566,15 @@ export interface RootRouter extends BaseContract {
         clearCodeSipDomain(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         defaultSipDomain(overrides?: CallOverrides): Promise<string>;
         getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
-        getAvailableForMintCodes(overrides?: CallOverrides): Promise<boolean[]>;
-        getBlockedCodes(overrides?: CallOverrides): Promise<boolean[]>;
-        getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.CodeStructOutput>;
-        getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.CodeStatusStructOutput>;
-        getHeldCodes(overrides?: CallOverrides): Promise<boolean[]>;
-        getMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<number>;
+        getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.CodeDataStructOutput>;
+        getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<number>;
+        getCodeStatuses(overrides?: CallOverrides): Promise<number[]>;
         getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<RootRouter.NodeDataStructOutput>;
         getOwnerCodes(adr: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean[]>;
         getPoolCodes(overrides?: CallOverrides): Promise<boolean[]>;
         hasOwner(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-        holdingDuration(overrides?: CallOverrides): Promise<BigNumber>;
+        holdDuration(overrides?: CallOverrides): Promise<BigNumber>;
         isApprovedForAll(owner: PromiseOrValue<string>, operator: PromiseOrValue<string>, overrides?: CallOverrides): Promise<boolean>;
-        isAvailableForMint(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-        isBlocked(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-        isHeld(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-        isNumberMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-        isPoolMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
-        isVerified(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<boolean>;
         mint(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         mintPrice(overrides?: CallOverrides): Promise<BigNumber>;
         modeChangePrice(overrides?: CallOverrides): Promise<BigNumber>;
@@ -643,16 +585,18 @@ export interface RootRouter extends BaseContract {
         renounceOwnership(overrides?: CallOverrides): Promise<void>;
         renounceOwnershipOfCode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         "safeTransferFrom(address,address,uint256)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
-        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<void>;
+        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<void>;
         setApprovalForAll(operator: PromiseOrValue<string>, approved: PromiseOrValue<boolean>, overrides?: CallOverrides): Promise<void>;
         setBaseUri(newBaseUri: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
         setCodeBlockedStatus(code: PromiseOrValue<BigNumberish>, newBlockedStatus: PromiseOrValue<boolean>, overrides?: CallOverrides): Promise<void>;
+        setCodeHoldEndTime(code: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setCodeRouter(code: PromiseOrValue<BigNumberish>, newChainId: PromiseOrValue<BigNumberish>, newAdr: PromiseOrValue<string>, newPoolCodeLength: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setCodeSipDomain(code: PromiseOrValue<BigNumberish>, newSipDomain: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
+        setCodeSubscription(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setCodeSubscriptionEndTime(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setCodeVerifiedStatus(code: PromiseOrValue<BigNumberish>, newVerifiedStatus: PromiseOrValue<boolean>, overrides?: CallOverrides): Promise<void>;
         setDefaultSipDomain(newDefaultSipDomain: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
-        setHoldingDuration(newHoldingDuration: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+        setHoldDuration(newHoldDuration: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setMintPrice(newMintPrice: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setModeChangePrice(newModeChangePrice: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         setSubscriptionDuration(newSubscriptionDuration: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
@@ -664,7 +608,7 @@ export interface RootRouter extends BaseContract {
         supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<boolean>;
         symbol(overrides?: CallOverrides): Promise<string>;
         tokenURI(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<string>;
-        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
+        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<void>;
         transferOwnership(newOwner: PromiseOrValue<string>, overrides?: CallOverrides): Promise<void>;
         ttl(overrides?: CallOverrides): Promise<BigNumber>;
         verificationOperator(overrides?: CallOverrides): Promise<string>;
@@ -698,24 +642,15 @@ export interface RootRouter extends BaseContract {
         }): Promise<BigNumber>;
         defaultSipDomain(overrides?: CallOverrides): Promise<BigNumber>;
         getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        getAvailableForMintCodes(overrides?: CallOverrides): Promise<BigNumber>;
-        getBlockedCodes(overrides?: CallOverrides): Promise<BigNumber>;
         getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
         getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        getHeldCodes(overrides?: CallOverrides): Promise<BigNumber>;
-        getMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
+        getCodeStatuses(overrides?: CallOverrides): Promise<BigNumber>;
         getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
         getOwnerCodes(adr: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
         getPoolCodes(overrides?: CallOverrides): Promise<BigNumber>;
         hasOwner(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        holdingDuration(overrides?: CallOverrides): Promise<BigNumber>;
+        holdDuration(overrides?: CallOverrides): Promise<BigNumber>;
         isApprovedForAll(owner: PromiseOrValue<string>, operator: PromiseOrValue<string>, overrides?: CallOverrides): Promise<BigNumber>;
-        isAvailableForMint(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        isBlocked(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        isHeld(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        isNumberMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        isPoolMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        isVerified(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
         mint(code: PromiseOrValue<BigNumberish>, overrides?: PayableOverrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
@@ -736,7 +671,7 @@ export interface RootRouter extends BaseContract {
         "safeTransferFrom(address,address,uint256)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
-        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
         setApprovalForAll(operator: PromiseOrValue<string>, approved: PromiseOrValue<boolean>, overrides?: Overrides & {
@@ -748,10 +683,16 @@ export interface RootRouter extends BaseContract {
         setCodeBlockedStatus(code: PromiseOrValue<BigNumberish>, newBlockedStatus: PromiseOrValue<boolean>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
+        setCodeHoldEndTime(code: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<BigNumber>;
         setCodeRouter(code: PromiseOrValue<BigNumberish>, newChainId: PromiseOrValue<BigNumberish>, newAdr: PromiseOrValue<string>, newPoolCodeLength: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
         setCodeSipDomain(code: PromiseOrValue<BigNumberish>, newSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<BigNumber>;
+        setCodeSubscription(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
         setCodeSubscriptionEndTime(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -763,7 +704,7 @@ export interface RootRouter extends BaseContract {
         setDefaultSipDomain(newDefaultSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
-        setHoldingDuration(newHoldingDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+        setHoldDuration(newHoldDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
         setMintPrice(newMintPrice: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -789,7 +730,7 @@ export interface RootRouter extends BaseContract {
         supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<BigNumber>;
         symbol(overrides?: CallOverrides): Promise<BigNumber>;
         tokenURI(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<BigNumber>;
-        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<BigNumber>;
         transferOwnership(newOwner: PromiseOrValue<string>, overrides?: Overrides & {
@@ -819,24 +760,15 @@ export interface RootRouter extends BaseContract {
         }): Promise<PopulatedTransaction>;
         defaultSipDomain(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         getApproved(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        getAvailableForMintCodes(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        getBlockedCodes(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         getCodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
         getCodeStatus(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        getHeldCodes(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        getMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
+        getCodeStatuses(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         getNodeData(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
         getOwnerCodes(adr: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
         getPoolCodes(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         hasOwner(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        holdingDuration(overrides?: CallOverrides): Promise<PopulatedTransaction>;
+        holdDuration(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         isApprovedForAll(owner: PromiseOrValue<string>, operator: PromiseOrValue<string>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        isAvailableForMint(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        isBlocked(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        isHeld(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        isNumberMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        isPoolMode(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        isVerified(code: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
         mint(code: PromiseOrValue<BigNumberish>, overrides?: PayableOverrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
@@ -857,7 +789,7 @@ export interface RootRouter extends BaseContract {
         "safeTransferFrom(address,address,uint256)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
-        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
+        "safeTransferFrom(address,address,uint256,bytes)"(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, data: PromiseOrValue<BytesLike>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
         setApprovalForAll(operator: PromiseOrValue<string>, approved: PromiseOrValue<boolean>, overrides?: Overrides & {
@@ -869,10 +801,16 @@ export interface RootRouter extends BaseContract {
         setCodeBlockedStatus(code: PromiseOrValue<BigNumberish>, newBlockedStatus: PromiseOrValue<boolean>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
+        setCodeHoldEndTime(code: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<PopulatedTransaction>;
         setCodeRouter(code: PromiseOrValue<BigNumberish>, newChainId: PromiseOrValue<BigNumberish>, newAdr: PromiseOrValue<string>, newPoolCodeLength: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
         setCodeSipDomain(code: PromiseOrValue<BigNumberish>, newSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
+            from?: PromiseOrValue<string>;
+        }): Promise<PopulatedTransaction>;
+        setCodeSubscription(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, newHoldEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
         setCodeSubscriptionEndTime(code: PromiseOrValue<BigNumberish>, newSubscriptionEndTime: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -884,7 +822,7 @@ export interface RootRouter extends BaseContract {
         setDefaultSipDomain(newDefaultSipDomain: PromiseOrValue<string>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
-        setHoldingDuration(newHoldingDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+        setHoldDuration(newHoldDuration: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
         setMintPrice(newMintPrice: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
@@ -910,7 +848,7 @@ export interface RootRouter extends BaseContract {
         supportsInterface(interfaceId: PromiseOrValue<BytesLike>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
         symbol(overrides?: CallOverrides): Promise<PopulatedTransaction>;
         tokenURI(tokenId: PromiseOrValue<BigNumberish>, overrides?: CallOverrides): Promise<PopulatedTransaction>;
-        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, tokenId: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
+        transferFrom(from: PromiseOrValue<string>, to: PromiseOrValue<string>, code: PromiseOrValue<BigNumberish>, overrides?: Overrides & {
             from?: PromiseOrValue<string>;
         }): Promise<PopulatedTransaction>;
         transferOwnership(newOwner: PromiseOrValue<string>, overrides?: Overrides & {

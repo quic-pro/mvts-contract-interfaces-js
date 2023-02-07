@@ -184,26 +184,6 @@ export declare class RootRouter__factory {
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
-        readonly inputs: readonly [];
-        readonly name: "getAvailableForMintCodes";
-        readonly outputs: readonly [{
-            readonly internalType: "bool[1000]";
-            readonly name: "";
-            readonly type: "bool[1000]";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [];
-        readonly name: "getBlockedCodes";
-        readonly outputs: readonly [{
-            readonly internalType: "bool[1000]";
-            readonly name: "";
-            readonly type: "bool[1000]";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
         readonly inputs: readonly [{
             readonly internalType: "uint256";
             readonly name: "code";
@@ -212,24 +192,20 @@ export declare class RootRouter__factory {
         readonly name: "getCodeData";
         readonly outputs: readonly [{
             readonly components: readonly [{
-                readonly internalType: "bool";
-                readonly name: "isBlocked";
-                readonly type: "bool";
+                readonly internalType: "enum RootRouter.CodeStatus";
+                readonly name: "status";
+                readonly type: "uint8";
             }, {
                 readonly internalType: "bool";
                 readonly name: "isVerified";
                 readonly type: "bool";
             }, {
-                readonly internalType: "bool";
-                readonly name: "hasSipDomain";
-                readonly type: "bool";
-            }, {
-                readonly internalType: "bool";
-                readonly name: "hasRouter";
-                readonly type: "bool";
-            }, {
                 readonly internalType: "uint256";
                 readonly name: "subscriptionEndTime";
+                readonly type: "uint256";
+            }, {
+                readonly internalType: "uint256";
+                readonly name: "holdEndTime";
                 readonly type: "uint256";
             }, {
                 readonly internalType: "enum RootRouter.CodeMode";
@@ -257,7 +233,7 @@ export declare class RootRouter__factory {
                 readonly name: "router";
                 readonly type: "tuple";
             }];
-            readonly internalType: "struct RootRouter.Code";
+            readonly internalType: "struct RootRouter.CodeData";
             readonly name: "";
             readonly type: "tuple";
         }];
@@ -271,58 +247,19 @@ export declare class RootRouter__factory {
         }];
         readonly name: "getCodeStatus";
         readonly outputs: readonly [{
-            readonly components: readonly [{
-                readonly internalType: "bool";
-                readonly name: "isBlocked";
-                readonly type: "bool";
-            }, {
-                readonly internalType: "bool";
-                readonly name: "hasOwner";
-                readonly type: "bool";
-            }, {
-                readonly internalType: "bool";
-                readonly name: "isHeld";
-                readonly type: "bool";
-            }, {
-                readonly internalType: "bool";
-                readonly name: "isAvailableForMint";
-                readonly type: "bool";
-            }, {
-                readonly internalType: "uint256";
-                readonly name: "subscriptionEndTime";
-                readonly type: "uint256";
-            }, {
-                readonly internalType: "uint256";
-                readonly name: "holdEndTime";
-                readonly type: "uint256";
-            }];
-            readonly internalType: "struct RootRouter.CodeStatus";
+            readonly internalType: "enum RootRouter.CodeStatus";
             readonly name: "";
-            readonly type: "tuple";
+            readonly type: "uint8";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
     }, {
         readonly inputs: readonly [];
-        readonly name: "getHeldCodes";
+        readonly name: "getCodeStatuses";
         readonly outputs: readonly [{
-            readonly internalType: "bool[1000]";
+            readonly internalType: "enum RootRouter.CodeStatus[1000]";
             readonly name: "";
-            readonly type: "bool[1000]";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "code";
-            readonly type: "uint256";
-        }];
-        readonly name: "getMode";
-        readonly outputs: readonly [{
-            readonly internalType: "enum RootRouter.CodeMode";
-            readonly name: "";
-            readonly type: "uint8";
+            readonly type: "uint8[1000]";
         }];
         readonly stateMutability: "view";
         readonly type: "function";
@@ -414,7 +351,7 @@ export declare class RootRouter__factory {
         readonly type: "function";
     }, {
         readonly inputs: readonly [];
-        readonly name: "holdingDuration";
+        readonly name: "holdDuration";
         readonly outputs: readonly [{
             readonly internalType: "uint256";
             readonly name: "";
@@ -433,90 +370,6 @@ export declare class RootRouter__factory {
             readonly type: "address";
         }];
         readonly name: "isApprovedForAll";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "code";
-            readonly type: "uint256";
-        }];
-        readonly name: "isAvailableForMint";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "code";
-            readonly type: "uint256";
-        }];
-        readonly name: "isBlocked";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "code";
-            readonly type: "uint256";
-        }];
-        readonly name: "isHeld";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "code";
-            readonly type: "uint256";
-        }];
-        readonly name: "isNumberMode";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "code";
-            readonly type: "uint256";
-        }];
-        readonly name: "isPoolMode";
-        readonly outputs: readonly [{
-            readonly internalType: "bool";
-            readonly name: "";
-            readonly type: "bool";
-        }];
-        readonly stateMutability: "view";
-        readonly type: "function";
-    }, {
-        readonly inputs: readonly [{
-            readonly internalType: "uint256";
-            readonly name: "code";
-            readonly type: "uint256";
-        }];
-        readonly name: "isVerified";
         readonly outputs: readonly [{
             readonly internalType: "bool";
             readonly name: "";
@@ -643,7 +496,7 @@ export declare class RootRouter__factory {
             readonly type: "address";
         }, {
             readonly internalType: "uint256";
-            readonly name: "tokenId";
+            readonly name: "code";
             readonly type: "uint256";
         }, {
             readonly internalType: "bytes";
@@ -699,6 +552,20 @@ export declare class RootRouter__factory {
             readonly type: "uint256";
         }, {
             readonly internalType: "uint256";
+            readonly name: "newHoldEndTime";
+            readonly type: "uint256";
+        }];
+        readonly name: "setCodeHoldEndTime";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "code";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
             readonly name: "newChainId";
             readonly type: "uint256";
         }, {
@@ -725,6 +592,24 @@ export declare class RootRouter__factory {
             readonly type: "string";
         }];
         readonly name: "setCodeSipDomain";
+        readonly outputs: readonly [];
+        readonly stateMutability: "nonpayable";
+        readonly type: "function";
+    }, {
+        readonly inputs: readonly [{
+            readonly internalType: "uint256";
+            readonly name: "code";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "newSubscriptionEndTime";
+            readonly type: "uint256";
+        }, {
+            readonly internalType: "uint256";
+            readonly name: "newHoldEndTime";
+            readonly type: "uint256";
+        }];
+        readonly name: "setCodeSubscription";
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";
@@ -769,10 +654,10 @@ export declare class RootRouter__factory {
     }, {
         readonly inputs: readonly [{
             readonly internalType: "uint256";
-            readonly name: "newHoldingDuration";
+            readonly name: "newHoldDuration";
             readonly type: "uint256";
         }];
-        readonly name: "setHoldingDuration";
+        readonly name: "setHoldDuration";
         readonly outputs: readonly [];
         readonly stateMutability: "nonpayable";
         readonly type: "function";
@@ -905,7 +790,7 @@ export declare class RootRouter__factory {
             readonly type: "address";
         }, {
             readonly internalType: "uint256";
-            readonly name: "tokenId";
+            readonly name: "code";
             readonly type: "uint256";
         }];
         readonly name: "transferFrom";

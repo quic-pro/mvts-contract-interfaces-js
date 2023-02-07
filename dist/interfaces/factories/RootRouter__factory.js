@@ -240,32 +240,6 @@ const _abi = [
         type: "function",
     },
     {
-        inputs: [],
-        name: "getAvailableForMintCodes",
-        outputs: [
-            {
-                internalType: "bool[1000]",
-                name: "",
-                type: "bool[1000]",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [],
-        name: "getBlockedCodes",
-        outputs: [
-            {
-                internalType: "bool[1000]",
-                name: "",
-                type: "bool[1000]",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
         inputs: [
             {
                 internalType: "uint256",
@@ -278,9 +252,9 @@ const _abi = [
             {
                 components: [
                     {
-                        internalType: "bool",
-                        name: "isBlocked",
-                        type: "bool",
+                        internalType: "enum RootRouter.CodeStatus",
+                        name: "status",
+                        type: "uint8",
                     },
                     {
                         internalType: "bool",
@@ -288,18 +262,13 @@ const _abi = [
                         type: "bool",
                     },
                     {
-                        internalType: "bool",
-                        name: "hasSipDomain",
-                        type: "bool",
-                    },
-                    {
-                        internalType: "bool",
-                        name: "hasRouter",
-                        type: "bool",
+                        internalType: "uint256",
+                        name: "subscriptionEndTime",
+                        type: "uint256",
                     },
                     {
                         internalType: "uint256",
-                        name: "subscriptionEndTime",
+                        name: "holdEndTime",
                         type: "uint256",
                     },
                     {
@@ -335,7 +304,7 @@ const _abi = [
                         type: "tuple",
                     },
                 ],
-                internalType: "struct RootRouter.Code",
+                internalType: "struct RootRouter.CodeData",
                 name: "",
                 type: "tuple",
             },
@@ -354,41 +323,9 @@ const _abi = [
         name: "getCodeStatus",
         outputs: [
             {
-                components: [
-                    {
-                        internalType: "bool",
-                        name: "isBlocked",
-                        type: "bool",
-                    },
-                    {
-                        internalType: "bool",
-                        name: "hasOwner",
-                        type: "bool",
-                    },
-                    {
-                        internalType: "bool",
-                        name: "isHeld",
-                        type: "bool",
-                    },
-                    {
-                        internalType: "bool",
-                        name: "isAvailableForMint",
-                        type: "bool",
-                    },
-                    {
-                        internalType: "uint256",
-                        name: "subscriptionEndTime",
-                        type: "uint256",
-                    },
-                    {
-                        internalType: "uint256",
-                        name: "holdEndTime",
-                        type: "uint256",
-                    },
-                ],
-                internalType: "struct RootRouter.CodeStatus",
+                internalType: "enum RootRouter.CodeStatus",
                 name: "",
-                type: "tuple",
+                type: "uint8",
             },
         ],
         stateMutability: "view",
@@ -396,31 +333,12 @@ const _abi = [
     },
     {
         inputs: [],
-        name: "getHeldCodes",
+        name: "getCodeStatuses",
         outputs: [
             {
-                internalType: "bool[1000]",
+                internalType: "enum RootRouter.CodeStatus[1000]",
                 name: "",
-                type: "bool[1000]",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "code",
-                type: "uint256",
-            },
-        ],
-        name: "getMode",
-        outputs: [
-            {
-                internalType: "enum RootRouter.CodeMode",
-                name: "",
-                type: "uint8",
+                type: "uint8[1000]",
             },
         ],
         stateMutability: "view",
@@ -542,7 +460,7 @@ const _abi = [
     },
     {
         inputs: [],
-        name: "holdingDuration",
+        name: "holdDuration",
         outputs: [
             {
                 internalType: "uint256",
@@ -567,120 +485,6 @@ const _abi = [
             },
         ],
         name: "isApprovedForAll",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "code",
-                type: "uint256",
-            },
-        ],
-        name: "isAvailableForMint",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "code",
-                type: "uint256",
-            },
-        ],
-        name: "isBlocked",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "code",
-                type: "uint256",
-            },
-        ],
-        name: "isHeld",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "code",
-                type: "uint256",
-            },
-        ],
-        name: "isNumberMode",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "code",
-                type: "uint256",
-            },
-        ],
-        name: "isPoolMode",
-        outputs: [
-            {
-                internalType: "bool",
-                name: "",
-                type: "bool",
-            },
-        ],
-        stateMutability: "view",
-        type: "function",
-    },
-    {
-        inputs: [
-            {
-                internalType: "uint256",
-                name: "code",
-                type: "uint256",
-            },
-        ],
-        name: "isVerified",
         outputs: [
             {
                 internalType: "bool",
@@ -845,7 +649,7 @@ const _abi = [
             },
             {
                 internalType: "uint256",
-                name: "tokenId",
+                name: "code",
                 type: "uint256",
             },
             {
@@ -917,6 +721,24 @@ const _abi = [
             },
             {
                 internalType: "uint256",
+                name: "newHoldEndTime",
+                type: "uint256",
+            },
+        ],
+        name: "setCodeHoldEndTime",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "code",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
                 name: "newChainId",
                 type: "uint256",
             },
@@ -950,6 +772,29 @@ const _abi = [
             },
         ],
         name: "setCodeSipDomain",
+        outputs: [],
+        stateMutability: "nonpayable",
+        type: "function",
+    },
+    {
+        inputs: [
+            {
+                internalType: "uint256",
+                name: "code",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "newSubscriptionEndTime",
+                type: "uint256",
+            },
+            {
+                internalType: "uint256",
+                name: "newHoldEndTime",
+                type: "uint256",
+            },
+        ],
+        name: "setCodeSubscription",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -1007,11 +852,11 @@ const _abi = [
         inputs: [
             {
                 internalType: "uint256",
-                name: "newHoldingDuration",
+                name: "newHoldDuration",
                 type: "uint256",
             },
         ],
-        name: "setHoldingDuration",
+        name: "setHoldDuration",
         outputs: [],
         stateMutability: "nonpayable",
         type: "function",
@@ -1185,7 +1030,7 @@ const _abi = [
             },
             {
                 internalType: "uint256",
-                name: "tokenId",
+                name: "code",
                 type: "uint256",
             },
         ],
