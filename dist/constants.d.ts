@@ -8,6 +8,10 @@ export declare const enum CodeStatus {
     Held = 2,
     Blocked = 3
 }
+export declare const enum ResponseCode {
+    OK = 200,
+    ERROR = 400
+}
 export declare const ROOT_ROUTER_ERC721_NAME = "MetaVerse Telecom Service";
 export declare const ROOT_ROUTER_ERC721_SYMBOL = "MVTS";
 export declare const ROOT_ROUTER_POOL_CODE_LENGTH = 3;

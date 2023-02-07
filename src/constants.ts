@@ -10,6 +10,10 @@ export const enum CodeStatus {
     Blocked,
 }
 
+export const enum ResponseCode {
+    OK = 200,
+    ERROR = 400,
+}
 
 export const ROOT_ROUTER_ERC721_NAME = 'MetaVerse Telecom Service';
 export const ROOT_ROUTER_ERC721_SYMBOL = 'MVTS';
