@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/2.0.0) (2023-02-07)
+
+### Changed
+
+- feat!: update abis
+- feat: add constants
+
+### Docs
+
+- docs: fix mistakes in factory names
+
+### Chores
+
+- chore(eslint): change extensions
+- chore: update dependencies
+- chore: bump version to 2.0.0
+
 ## [1.0.0](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/1.0.0) (2023-01-13)
 
 ### Changed
