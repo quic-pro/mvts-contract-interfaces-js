@@ -1,5 +1,15 @@
 # Changelog
 
+## [2.1.1](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/2.1.1) (2023-02-08)
+
+### Fixed
+
+- fix: remove const modifier of enums
+
+### Chores
+
+- chore: bump version to 2.1.1
+
 ## [2.1.0](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/2.1.0) (2023-02-07)
 
 ### Changed
@@ -8,7 +18,7 @@
 
 ### Chores
 
-- chore: bump version to 2.0.0
+- chore: bump version to 2.1.0
 
 ## [2.0.0](https://github.com/quic-pro/mvts-contract-interfaces-js/releases/tag/2.0.0) (2023-02-07)
 
