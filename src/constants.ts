@@ -1,16 +1,16 @@
-export const enum CodeMode {
+export enum CodeMode {
     Number,
     Pool,
 }
 
-export const enum CodeStatus {
+export enum CodeStatus {
     AvailableForMinting,
     Active,
     Held,
     Blocked,
 }
 
-export const enum ResponseCode {
+export enum ResponseCode {
     OK = 200,
     ERROR = 400,
 }

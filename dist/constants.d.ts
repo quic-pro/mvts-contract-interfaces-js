@@ -1,14 +1,14 @@
-export declare const enum CodeMode {
+export declare enum CodeMode {
     Number = 0,
     Pool = 1
 }
-export declare const enum CodeStatus {
+export declare enum CodeStatus {
     AvailableForMinting = 0,
     Active = 1,
     Held = 2,
     Blocked = 3
 }
-export declare const enum ResponseCode {
+export declare enum ResponseCode {
     OK = 200,
     ERROR = 400
 }
